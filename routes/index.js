@@ -8,6 +8,7 @@ var mysql_setting = {
   password:'root',
   database:'taskManagementDB'
 }
+
 var title = 'いがーぴのタスク整理アプリ';
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +29,9 @@ router.get('/', function(req, res, next) {
 // タスク追加処理
 router.post('/add',(req,res,next)=>{
   var newTask = req.body.newTask;
+  console.log("test");
   var time = new Date();
+  console.log(time);
   var data = {content:newTask, startTime:time};
 
   var connection = mysql.createConnection(mysql_setting);
@@ -36,6 +39,9 @@ router.post('/add',(req,res,next)=>{
 
   connection.query('insert into task set ?', data,
       function(error, results, fields){
+        if(error){
+          console.log(error);
+        }
         res.redirect('/');
       });
   connection.end();

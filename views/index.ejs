@@ -19,8 +19,17 @@
         <% for(var i in content){ %>
           <tr>
             <% var obj = content[i]; %>
-            <th><%= obj.content %></th>
-            <th>作成日時：<%= obj.startTime %></th>
+            <% 
+              let format_time = 'YYYY-MM-DD hh:mm:ss';
+              format_time = format_time.replace(/YYYY/g, obj.startTime.getFullYear());
+              format_time = format_time.replace(/MM/g, obj.startTime.getMonth() +1);
+              format_time = format_time.replace(/DD/g, obj.startTime.getDate());
+              format_time = format_time.replace(/hh/g, obj.startTime.getHours());
+              format_time = format_time.replace(/mm/g, obj.startTime.getMinutes());
+              format_time = format_time.replace(/ss/g, obj.startTime.getSeconds());
+             %>
+            <th><%= obj.content.toString() %></th>
+            <th>作成日時：<%= format_time %></th>
             <th>経過時間：<%= '後で実装する' %></th>
             <th>
               <form method="GET" action="/edit">
