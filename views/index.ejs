@@ -2,15 +2,17 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/static/stylesheets/style.css' />
+    <script type="text/javascript" src="/static/javascripts/form.js"></script>
+    
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <form action="/add" method="POST">
-      <label for="newTaskData">今から取り組む新たなタスク</label>
-      <input type="text" name="newTask"> 
-      <button type="submit">タスク作成</button>
+      <label for="newTaskData">新たなタスク</label>
+      <input type="text" name="newTask" > 
+      <input type="submit" value="タスク作成" onclick="return checkForm();">
     </form>
     <div role="main">  
       <table>
@@ -21,7 +23,6 @@
             <th>作成日時：<%= obj.startTime %></th>
             <th>経過時間：<%= '後で実装する' %></th>
             <th>
-              <!-- <a href="/edit?id=<%= obj.id%>" >編集</a> -->
               <form method="GET" action="/edit">
                 <input type="hidden" name="id" value="<%= obj.id%>">
                 <p><input type="submit" value="編集"></p>
