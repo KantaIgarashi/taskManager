@@ -8,44 +8,45 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>小目標を設定せよ</p>
     <form action="/add" method="POST">
-      <label for="newTaskData">新たなタスク</label>
-      <input type="text" name="newTask" > 
+      
+      <textarea type="text" name="newTask" > </textarea><br>
       <input type="submit" value="タスク作成" onclick="return checkForm();">
     </form>
     <div role="main">  
-      <table>
-        <% for(var i in content){ %>
-          <tr>
-            <% var obj = content[i]; %>
-            <% 
-              let format_time = 'YYYY-MM-DD hh:mm:ss';
-              format_time = format_time.replace(/YYYY/g, obj.startTime.getFullYear());
-              format_time = format_time.replace(/MM/g, obj.startTime.getMonth() +1);
-              format_time = format_time.replace(/DD/g, obj.startTime.getDate());
-              format_time = format_time.replace(/hh/g, obj.startTime.getHours());
-              format_time = format_time.replace(/mm/g, obj.startTime.getMinutes());
-              format_time = format_time.replace(/ss/g, obj.startTime.getSeconds());
-             %>
-            <th><%= obj.content.toString() %></th>
-            <th>作成日時：<%= format_time %></th>
-            <th>経過時間：<%= '後で実装する' %></th>
-            <th>
-              <form method="GET" action="/edit">
-                <input type="hidden" name="id" value="<%= obj.id%>">
-                <p><input type="submit" value="編集"></p>
-              </form>
-            </th>
-            <th>
-             <form method="POST" action="/delete">
-              <input type="hidden" name="id" value="<%= obj.id%>">
-              <p><input type="submit" value="削除"></p>
-            </form>
+      <% for(var i in content){ %>
+        <% var obj = content[i]; %>
+        <% 
+        let format_time = 'YYYY-MM-DD hh:mm:ss';
+        format_time = format_time.replace(/YYYY/g, obj.startTime.getFullYear());
+        format_time = format_time.replace(/MM/g, obj.startTime.getMonth() +1);
+        format_time = format_time.replace(/DD/g, obj.startTime.getDate());
+        format_time = format_time.replace(/hh/g, obj.startTime.getHours());
+        format_time = format_time.replace(/mm/g, obj.startTime.getMinutes());
+        format_time = format_time.replace(/ss/g, obj.startTime.getSeconds());
+        %>
+        <div class="taskCard">
+          <div class="taskCardContent"><%= obj.content.toString() %></div><br>
+          <div class="tascCardTime"><%= format_time %></div>
+          <table>
+            <tr>
+              <th>
+                <form method="GET" action="/edit">
+                  <input type="hidden" name="id" value="<%= obj.id%>">
+                  <input type="submit" value="編集">
+                </form>
               </th>
-          </tr>
-        <% } %>
-      </table>
+              <th>
+                <form method="POST" action="/delete">
+                  <input type="hidden" name="id" value="<%= obj.id%>">
+                  <input type="submit" value="削除">
+                </form>
+              </th>
+            </tr>
+          </table>
+        </div>
+          <% } %>
     </div>
   </body>
 </html>

@@ -2,14 +2,14 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/static/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
     <p>編集画面</p>
     <form action="/edit?id=<%= content.id%>" method="POST">
       <label ></label>
-      <input type="text" name="task" value="<%= content.content %>"> 
+      <textarea type="text" name="task" value="<%= content.content %>"> </textarea>
       <input type="hidden" name="taskId" value="<%= content.id %>">
       <button type="submit">タスク内容更新</button>
     </form>

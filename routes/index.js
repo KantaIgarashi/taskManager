@@ -9,7 +9,7 @@ var mysql_setting = {
   database:'taskManagementDB'
 }
 
-var title = 'いがーぴのタスク整理アプリ';
+var title = 'タスク整理アプリ';
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var connection = mysql.createConnection(mysql_setting);
