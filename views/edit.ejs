@@ -9,8 +9,8 @@
     <p>編集画面</p>
     <form action="/edit?id=<%= content.id%>" method="POST">
       <label ></label>
-      <textarea type="text" name="task" value="<%= content.content %>"> </textarea>
-      <input type="hidden" name="taskId" value="<%= content.id %>">
+      <textarea type="text" name="task" ><%= content.content %></textarea>
+      <input type="hidden" name="taskId" value="<%= content.id %>"><br>
       <button type="submit">タスク内容更新</button>
     </form>
     <div role="main"> 
