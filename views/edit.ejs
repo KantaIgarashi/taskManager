@@ -10,6 +10,30 @@
     <form action="/edit?id=<%= content.id%>" method="POST">
       <label ></label>
       <textarea type="text" name="task" ><%= content.content %></textarea>
+      <div class="settingTagRadiobox">
+        <% if(content.contentTag.toString() === "research"){ %>
+          <input type="radio" name="contentTag" value="research" checked>調査
+        <%  }else{ %>
+          <input type="radio" name="contentTag" value="research" required>調査
+        <% } %>
+        <% if(content.contentTag.toString() === "create"){ %>
+          <input type="radio" name="contentTag" value="create" checked>実装
+        <%  }else{ %>
+          <input type="radio" name="contentTag" value="create" required>実装
+        <% } %>
+        <% if(content.contentTag.toString() === "test"){ %>
+          <input type="radio" name="contentTag" value="test" checked>テスト
+        <%  }else{ %>
+          <input type="radio" name="contentTag" value="test">テスト
+        <% } %>
+        <% if(content.contentTag.toString() === "others"){ %>
+          <input type="radio" name="contentTag" value="others" checked>その他
+        <%  }else{ %>
+          <input type="radio" name="contentTag" value="others">その他
+        <% } %>
+          
+          
+      </div>
       <input type="hidden" name="taskId" value="<%= content.id %>"><br>
       <button type="submit">タスク内容更新</button>
     </form>

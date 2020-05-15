@@ -10,8 +10,13 @@
     <h1><%= title %></h1>
     <p>小目標を設定せよ</p>
     <form action="/add" method="POST">
-      
       <textarea type="text" name="newTask" > </textarea><br>
+      <div class="settingTagRadiobox">
+          <input type="radio" name="contentTag" value="research" checked>調査
+          <input type="radio" name="contentTag" value="create" required>実装
+          <input type="radio" name="contentTag" value="test">テスト
+          <input type="radio" name="contentTag" value="others">その他
+      </div>
       <input type="submit" value="タスク作成" onclick="return checkForm();">
     </form>
     <div role="main">  
@@ -26,9 +31,24 @@
         format_time = format_time.replace(/mm/g, obj.startTime.getMinutes());
         format_time = format_time.replace(/ss/g, obj.startTime.getSeconds());
         %>
+        <%
+        const tagData = obj.contentTag.toString();
+        let tag;
+        if("research" === tagData){
+          tag = '調査';
+        }else if("create" === tagData){
+          tag = '実装';
+        }else if("test" === tagData){
+          tag = 'テスト';
+        }else{
+          tag = 'その他';
+        }
+
+        %>
         <div class="taskCard">
           <div class="taskCardContent"><%= obj.content.toString() %></div><br>
           <div class="tascCardTime"><%= format_time %></div>
+          <div class="taskCardTag"><%= tag %></div>
           <table>
             <tr>
               <th>

@@ -28,11 +28,11 @@ router.get('/', function(req, res, next) {
 
 // タスク追加処理
 router.post('/add',(req,res,next)=>{
-  var newTask = req.body.newTask;
-  console.log("test");
-  var time = new Date();
-  console.log(time);
-  var data = {content:newTask, startTime:time};
+  const newTask = req.body.newTask;
+  const tag = req.body.contentTag;
+  const time = new Date();
+  
+  const data = {content:newTask, startTime:time, contentTag:tag};
 
   var connection = mysql.createConnection(mysql_setting);
   connection.connect();
@@ -66,12 +66,10 @@ router.get('/edit',(req,res,next)=>{
 
 //タスク更新処理
 router.post('/edit',(req,res,next)=>{
-  var id = req.body.taskId;
-  var taskContent = req.body.task;
-  var data = {'content':taskContent};
-  console.log('idのテスト');
-  console.log(id);
-  console.log(taskContent);
+  const id = req.body.taskId;
+  const taskContent = req.body.task;
+  const tagValue = req.body.contentTag;
+  const data = {'content':taskContent,'contentTag':tagValue};
   var connection = mysql.createConnection(mysql_setting);
   connection.connect();
 
